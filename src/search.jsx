@@ -1,10 +1,30 @@
 import { useState } from "react";
+import SearchModal from "./SearchModal";
+import data from "./cars.json";
 
-function Search() {
+function Search({ onSearch, onClear }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [allCars, setAllCars] = useState(data);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearch = (event) => {
     event.preventDefault();
+    onSearch(searchTerm);
+    const filteredResults = allCars.filter((car) =>
+      car.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(filteredResults);
+    setIsModalOpen(true);
+  };
+
+  const handleClear = () => {
+    setSearchTerm("");
+    onClear();
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -12,12 +32,20 @@ function Search() {
       <form onSubmit={handleSearch}>
         <input
           type="text"
-          placeholder="Searc Cars in Garage"
+          placeholder="Search Cars in Garage"
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
         />
-        <button type="submit">Sök</button>
+        <button type="submit">Search</button>
+        <button type="button" onClick={handleClear}>
+          Clear Search
+        </button>
       </form>
+      <SearchModal
+        isOpen={isModalOpen}
+        searchResults={searchResults}
+        closeModal={closeModal}
+      />
     </div>
   );
 }

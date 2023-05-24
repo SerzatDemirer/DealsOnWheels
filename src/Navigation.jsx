@@ -1,8 +1,15 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./App.css";
 import Search from "./search";
 
 function Navigation() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
   return (
     <div>
       <ul className="list">
@@ -10,7 +17,7 @@ function Navigation() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/cars">Cars</Link>
+          <Link to="/car">Car</Link>
         </li>
         <li>
           <Link to="/aboutus">AboutUs</Link>
@@ -19,7 +26,7 @@ function Navigation() {
           <Link to="/outlet">Outlet</Link>
         </li>
       </ul>
-      <Search />
+      <Search onSearch={handleSearch} />
     </div>
   );
 }

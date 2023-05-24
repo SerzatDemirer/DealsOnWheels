@@ -1,6 +1,6 @@
 import React from "react";
 import "./CarCard.css";
-
+/* 
 function CarCard({ car }) {
   return (
     <div className="car-card">
@@ -14,3 +14,4 @@ function CarCard({ car }) {
 }
 
 export default CarCard;
+ */

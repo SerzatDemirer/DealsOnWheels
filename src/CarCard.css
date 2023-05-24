@@ -33,7 +33,7 @@
 }
 
 .car-card-button {
-  background-color: #007bff;
+  background-color: rgb(226, 82, 82);
   color: white;
   padding: 10px 20px;
   border: none;
@@ -43,5 +43,5 @@
 }
 
 .car-card-button:hover {
-  background-color: #0056b3;
+  background-color: #d4e04a;
 }
